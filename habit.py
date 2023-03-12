@@ -1,5 +1,7 @@
 import datetime
 
+import database
+
 
 class Habit:
 
@@ -14,7 +16,7 @@ class Habit:
         self.current_streak = current_streak
 
     def __str__(self):
-        return f"Name: {self.name} \nPeriodicity: {self.periodicity} \nCurrent streak: {self.current_streak}"
+        return f"Name: {self.name} \nPeriodicity: {self.periodicity} \nCurrent streak: {self.current_streak} \n Longest streak: {self.longest_streak}"
 
     def is_task_completed(self):
 
@@ -55,9 +57,11 @@ class Habit:
             self.completed_periods.append(datetime.date.today().isocalendar()[1])
             self.current_streak += 1
 
-        if self.current_streak > self.longest_streak:
+        if self.current_streak >= self.longest_streak:
             self.longest_streak = self.current_streak
             print(f"Congratulations, you have beaten your old highscore of {self.longest_streak-1}")
+
+        database.check_off_task(datetime.date.today(), datetime.date.today().isocalendar()[1], self.name, self)
 
 
 

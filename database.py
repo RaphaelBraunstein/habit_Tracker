@@ -58,12 +58,19 @@ def load_data():
     cursor = conn.cursor()
     cursor.execute("SELECT * FROM habits")
     rows = cursor.fetchall()
+    cursor.execute("SELECT * FROM dates")
+    rows_dates = cursor.fetchall()
+
     habits = []
     for row in rows:
         habit_ = habit.Habit(*row)
+        for date in rows_dates:
+            if habit_.periodicity == "daily":
+                if date[3] == habit_.name:
+                    habit_.completed_periods.append(date[1])
+            if habit_.periodicity == "weekly":
+                if date[3] == habit_.name:
+                    habit_.completed_periods.append(date[2])
         habits.append(habit_)
+    return habits
 
-    # for testing
-    for h in habits:
-        print(h.name, h.periodicity, h.created_date, h.task_specification, h.current_streak, h.longest_streak,
-              h.missed_periods_counter)
