@@ -56,6 +56,7 @@ def check_off_task(date, calendarweek, habit_name, missed_periods_counter, longe
     :param longest_streak: Is the longest streak how often someone checked a task in a row.
     :param current_streak: Is the current counter on how many times someone managed to check a habit in a row.
     """
+
     conn.execute("""UPDATE habits 
     SET MISSED_COUNTER = ?,
     LONGEST_STREAK = ?, CURRENT_STREAK = ? WHERE NAME_ = ?""",
@@ -102,3 +103,79 @@ def load_data():
         habits.append(habit_)
     return habits
 
+
+def insert_test_data():
+    conn.execute("""INSERT INTO habits VALUES (?,?,?,?,?,?,?)""",
+                 ("drinking", "daily", "Drinking glass of water when waking up", "2023-02-01",
+                  12, 6, 3))
+
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-01", 5, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-02", 5, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-03", 5, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-04", 5, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-05", 5, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-06", 6, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-10", 6, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-11", 6, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-12", 6, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-13", 7, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-15", 7, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-16", 7, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-17", 7, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-21", 8, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-22", 8, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-23", 8, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-24", 8, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-25", 8, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-03", 9, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-04", 9, "drinking"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-05", 9, "drinking"))
+
+    conn.execute("""INSERT INTO habits VALUES (?,?,?,?,?,?,?)""",
+                 ("exercise", "daily", "working out", "2023-02-01",
+                  13, 5, 3))
+
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-01", 5, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-02", 5, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-04", 5, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-05", 5, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-06", 6, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-10", 6, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-11", 6, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-12", 6, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-13", 7, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-15", 7, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-16", 7, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-17", 7, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-21", 8, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-22", 8, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-23", 8, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-24", 8, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-25", 8, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-03", 9, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-04", 9, "exercise"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-05", 9, "exercise"))
+    conn.commit()
+
+    conn.execute("""INSERT INTO habits VALUES (?,?,?,?,?,?,?)""",
+                 ("cleaning", "weekly", "cleaning the house", "2023-02-01", 0, 4, 4))
+
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-01", 5, "cleaning"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-11", 6, "cleaning"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-17", 7, "cleaning"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-22", 8, "cleaning"))
+
+    conn.execute("""INSERT INTO habits VALUES (?,?,?,?,?,?,?)""",
+                 ("trash", "weekly", "bringing out the trash", "2023-02-11", 1, 3, 3))
+
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-11", 6, "trash"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-22", 8, "trash"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-03", 9, "trash"))
+
+    conn.execute("""INSERT INTO habits VALUES (?,?,?,?,?,?,?)""",
+                 ("laundry", "weekly", "washing the clothes", "2023-02-11", 2, 2, 1))
+
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-11", 6, "laundry"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-02-22", 8, "laundry"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-03", 9, "laundry"))
+    conn.execute("""INSERT INTO dates VALUES(?, ?, ?, ?)""", (None, "2023-03-13", 11, "laundry"))
