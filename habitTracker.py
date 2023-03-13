@@ -18,6 +18,16 @@ class Tracker:
         """
         return self.habit_list
 
+    def get_habit_by_name(self, habit_name):
+        """
+        returns a habit based on its name
+        :param habit_name: name_ of the habit
+        :return: habit_
+        """
+        for habit in self.habit_list:
+            if habit.name == habit_name:
+                return habit
+
     def create_habit(self, name, periodicity, task_specification):
         """
         This method creates a habit and writes it to the database.
