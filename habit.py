@@ -91,12 +91,12 @@ class Habit:
 
             self.completed_periods.append(datetime.date.today())
             self.current_streak += 1
+            print("Congratulations, you have successfully done this task")
 
         if self.periodicity == "weekly":
 
             # here it checks if the last weeks number is in the list
-            if len(self.completed_periods) != 0 and datetime.date.today().isocalendar()[
-                1] - 1 not in self.completed_periods:
+            if len(self.completed_periods) != 0 and datetime.date.today().isocalendar()[1] - 1 not in self.completed_periods:
                 self.missed_periods_counter += datetime.date.today().isocalendar()[1] - self.completed_periods[-1] - 1
                 if self.current_streak > self.longest_streak:
                     self.longest_streak = self.current_streak
@@ -105,6 +105,7 @@ class Habit:
 
             self.completed_periods.append(datetime.date.today().isocalendar()[1])
             self.current_streak += 1
+            print("Congratulations, you have successfully done this task")
 
         database.check_off_task(datetime.date.today(), datetime.date.today().isocalendar()[1], self.name,
                                 self.missed_periods_counter, self.longest_streak, self.current_streak)

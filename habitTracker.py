@@ -59,6 +59,7 @@ class Tracker:
         for habit in self.habit_list:
             if habit.name == habit_name:
                 database.delete_habit(habit_name)
+                print("You have successfully deleted the habit")
                 self.__init__()
                 return
         print("This habit is not tracked yet!")
@@ -83,10 +84,9 @@ class Tracker:
         """
         result = {}
         for h in self.habit_list:
-            result[h.name] = h.longest_streak
-        final = sorted(result, key=lambda habit: habit.longest_streak)
+            result[h.name] = str(h.longest_streak)
 
-        return final
+        return result
 
     def get_longest_streak_habit(self, habit_name):
         """
@@ -107,9 +107,7 @@ class Tracker:
         for h in self.habit_list:
             result[h.name] = h.missed_periods_counter
 
-        final = sorted(result, key=lambda habit: habit.missed_periods_counter)
-
-        return final
+        return result
 
     def get_missed_periods_habit(self, habit_name):
         """
@@ -153,7 +151,8 @@ class Tracker:
         """
 
         for habit in self.habit_list:
-            percentage = (len(habit.completed_periods)/(len(habit.completed_periods) + habit.missed_periods_counter))*100
+            percentage = (len(habit.completed_periods) / (
+                        len(habit.completed_periods) + habit.missed_periods_counter)) * 100
             print("You achieved to do ", percentage, " % of all tasks for", habit.name)
 
     def print_statistic_one(self, habit_name):
@@ -176,12 +175,7 @@ class Tracker:
                 for date in habit.completed_periods:
                     print(date)
                 print("------------------------")
-                print(habit.is_task_completed())
                 if habit.is_task_completed():
                     print("The task has already been done for this period")
                 else:
                     print("The task hasn't been done for the current period!")
-
-
-
-
