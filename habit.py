@@ -84,10 +84,10 @@ class Habit:
                 self.missed_periods_counter += (
                         datetime.date.today() - datetime.datetime.strptime(self.completed_periods[-1],
                                                                            '%Y-%m-%d').date()).days
-                if self.current_streak > self.longest_streak:
-                    self.longest_streak = self.current_streak
-                    print(f"Congratulations, you have beaten your old high-score of {self.longest_streak - 1}")
                 self.current_streak = 0
+            if self.current_streak > self.longest_streak:
+                self.longest_streak = self.current_streak
+                print(f"Congratulations, you have beaten your old high-score of {self.longest_streak - 1}")
 
             self.completed_periods.append(datetime.date.today())
             self.current_streak += 1
@@ -98,10 +98,10 @@ class Habit:
             # here it checks if the last weeks number is in the list
             if len(self.completed_periods) != 0 and datetime.date.today().isocalendar()[1] - 1 not in self.completed_periods:
                 self.missed_periods_counter += datetime.date.today().isocalendar()[1] - self.completed_periods[-1] - 1
-                if self.current_streak > self.longest_streak:
-                    self.longest_streak = self.current_streak
-                    print(f"Congratulations, you have beaten your old high-score of {self.longest_streak - 1}")
                 self.current_streak = 0
+            if self.current_streak > self.longest_streak:
+                self.longest_streak = self.current_streak
+                print(f"Congratulations, you have beaten your old high-score of {self.longest_streak - 1}")
 
             self.completed_periods.append(datetime.date.today().isocalendar()[1])
             self.current_streak += 1
