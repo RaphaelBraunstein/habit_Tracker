@@ -8,7 +8,6 @@ database.init_db()
 
 database.insert_test_data()
 tracker = habitTracker.Tracker()
-print(len(tracker.habit_list))
 
 print("----WELCOME TO THE HABIT TRACKER!----")
 print("")
