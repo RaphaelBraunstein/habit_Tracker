@@ -15,6 +15,11 @@ so the date can be assigned to the habit.
 """
 conn = sqlite3.connect("habit.db")
 c = conn.cursor()
+
+# For testing, it is easier to drop the tables at the beginning!!
+c.execute("""DROP TABLE IF EXISTS habits""")
+c.execute("""DROP TABLE IF EXISTS dates""")
+
 c.execute("""CREATE TABLE IF NOT EXISTS habits
                 ( 
                 NAME_ TEXT PRIMARY KEY NOT NULL,

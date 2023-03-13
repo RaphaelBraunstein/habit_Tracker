@@ -5,7 +5,8 @@ import database
 
 class Habit:
 
-    def __init__(self, name, periodicity, task_specification, created_date,missed_periods_counter, longest_streak, current_streak):
+    def __init__(self, name, periodicity, task_specification, created_date, missed_periods_counter, longest_streak,
+                 current_streak):
         """
         This initializes the habit
         :param name: is the name of the habit
@@ -45,7 +46,12 @@ class Habit:
 
         if self.periodicity == "daily":
 
-            if datetime.date.today() in self.completed_periods:
+            # dates from database need to be converted, because in database they are strings, and here they are dates
+            dates = []
+            for x in self.completed_periods:
+                dates.append(datetime.datetime.strptime(x, '%Y-%m-%d').date())  # convert text into dates for comparison
+
+            if datetime.date.today() in dates:
                 return True
             else:
                 return False
@@ -73,8 +79,11 @@ class Habit:
 
         if self.periodicity == "daily":
             # here it checks if the yesterday's date is in the list
-            if len(self.completed_periods) != 0 and datetime.date.today()-datetime.timedelta(1) not in self.completed_periods:
-                self.missed_periods_counter += (datetime.date.today()-datetime.datetime.strptime(self.completed_periods[-1], '%Y-%m-%d').date()).days
+            if len(self.completed_periods) != 0 and datetime.date.today() - datetime.timedelta(
+                    1) not in self.completed_periods:
+                self.missed_periods_counter += (
+                        datetime.date.today() - datetime.datetime.strptime(self.completed_periods[-1],
+                                                                           '%Y-%m-%d').date()).days
                 if self.current_streak > self.longest_streak:
                     self.longest_streak = self.current_streak
                     print(f"Congratulations, you have beaten your old high-score of {self.longest_streak - 1}")
@@ -86,8 +95,9 @@ class Habit:
         if self.periodicity == "weekly":
 
             # here it checks if the last weeks number is in the list
-            if len(self.completed_periods) != 0 and datetime.date.today().isocalendar()[1]-1 not in self.completed_periods:
-                self.missed_periods_counter += datetime.date.today().isocalendar()[1]-self.completed_periods[-1]-1
+            if len(self.completed_periods) != 0 and datetime.date.today().isocalendar()[
+                1] - 1 not in self.completed_periods:
+                self.missed_periods_counter += datetime.date.today().isocalendar()[1] - self.completed_periods[-1] - 1
                 if self.current_streak > self.longest_streak:
                     self.longest_streak = self.current_streak
                     print(f"Congratulations, you have beaten your old high-score of {self.longest_streak - 1}")
@@ -98,8 +108,3 @@ class Habit:
 
         database.check_off_task(datetime.date.today(), datetime.date.today().isocalendar()[1], self.name,
                                 self.missed_periods_counter, self.longest_streak, self.current_streak)
-
-
-
-
-

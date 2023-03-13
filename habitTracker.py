@@ -137,3 +137,41 @@ class Tracker:
 
         return result
 
+    def print_statistic_all(self):
+        """
+        This method prints the current statistic for all habits.
+        """
+
+        for habit in self.habit_list:
+            percentage = (len(habit.completed_periods)/(len(habit.completed_periods) + habit.missed_periods_counter))*100
+            print("You achieved to do ", percentage, " % of all tasks for", habit.name)
+
+    def print_statistic_one(self, habit_name):
+        """
+        This method prints the data for a specific habit
+        :param habit_name: name of the habit
+        """
+
+        for habit in self.habit_list:
+            if habit.name == habit_name:
+                percentage = (len(habit.completed_periods) /
+                              (len(habit.completed_periods) + habit.missed_periods_counter)) * 100
+
+                print("You achieved to do ", percentage, " % of all tasks for", habit.name)
+                print("periodicity:", habit.periodicity)
+                print("Current streak:", habit.current_streak)
+                print("Longest streak:", habit.longest_streak)
+                print("missed periods:", habit.missed_periods_counter)
+                print("done periods:")
+                for date in habit.completed_periods:
+                    print(date)
+                print("------------------------")
+                print(habit.is_task_completed())
+                if habit.is_task_completed():
+                    print("The task has already been done for this period")
+                else:
+                    print("The task hasn't been done for the current period!")
+
+
+
+
