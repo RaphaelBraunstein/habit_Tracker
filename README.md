@@ -12,6 +12,7 @@ To do so:<br>
 - The database will be initialized in the background while starting the app. So no further steps are needed to run the app! 
 - Now you run the habit tracking app! 
 
+##### Be aware that this project was built for educational purposes. In order to fill the db with the testdata, the db will be dropped at the beginning of each session!
 
 ### Description
 This description section will hold some basic information on how to use the app:<br>
