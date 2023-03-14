@@ -44,8 +44,10 @@ To get the statistic of all currently tracked habits, type *13*
 ----
 
 These are just some basic functions, you can do with the habit tracker. To see all available commands, just type *help* into the cli
+
 ----
 <br>
+
 ### Contributions
 
 If you have any additional ideas for this project, feel free to contact me :)
