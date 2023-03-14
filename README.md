@@ -12,7 +12,8 @@ To do so:<br>
 - The database will be initialized in the background while starting the app. So no further steps are needed to run the app! 
 - Now you run the habit tracking app! 
 
-##### Be aware that this project was built for educational purposes. In order to fill the db with the testdata, the db will be dropped at the beginning of each session!
+##### Be aware that this project was built for educational purposes. In order to fill the db with the testdata, the db will be dropped at the beginning of each session! <br> 
+##### The testdata is dated with the 5th march! Due to the fact that the habit tracker processes real time data, and the testdata is "outdated", when "checking off" a task for a habit from the testdata, the misscounter will always increase by the missed dates between today and the last entry,  and the current counter will drop to 1!
 
 ### Description
 This description section will hold some basic information on how to use the app:<br>
