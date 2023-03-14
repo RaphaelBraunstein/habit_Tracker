@@ -1,18 +1,7 @@
 import sqlite3
 import habit as hb
 
-"""
-When running the file database.py it creates the database.
-That's why the connect-method, the cursor-method and the 2 table executes are outside of a method.
-When running the file, it will create 2 tables:
-habits: habits represent the habits.py class itself with all attributes. The NAME_ attribute is the primary key,
-because it is very unlikely to have 2 habits with the same name, so i chose the name to be the primary key.
 
-dates: the dates table holds the dates of the tasks when a habit has been completed.
-For each date, it holds the date itself,
-the calendar week for weekly habits and the name of the habit as a foreign key,
-so the date can be assigned to the habit. 
-"""
 conn = sqlite3.connect("habit.db")
 c = conn.cursor()
 
