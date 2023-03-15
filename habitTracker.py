@@ -163,10 +163,13 @@ class Tracker:
 
         for habit in self.habit_list:
             if habit.name == habit_name:
-                percentage = (len(habit.completed_periods) /
-                              (len(habit.completed_periods) + habit.missed_periods_counter)) * 100
+                if len(habit.completed_periods) != 0:
+                    percentage = (len(habit.completed_periods) /
+                                  (len(habit.completed_periods) + habit.missed_periods_counter)) * 100
+                    print("You achieved to do ", percentage, " % of all tasks for", habit.name)
+                else:
+                    print("You haven't done any tasks yet!")
 
-                print("You achieved to do ", percentage, " % of all tasks for", habit.name)
                 print("periodicity:", habit.periodicity)
                 print("Current streak:", habit.current_streak)
                 print("Longest streak:", habit.longest_streak)

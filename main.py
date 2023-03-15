@@ -52,9 +52,10 @@ while True:
         case "3":
             name = input("What is the name of the habit you want to create?")
             print("What is the periodicity of the habit? \n[1] daily \n[2] weekly")
-            if input() == "1":
+            x = input()
+            if x == "1":
                 periodicity = "daily"
-            elif input() == "2":
+            elif x == "2":
                 periodicity = "weekly"
             else:
                 print(f"I am sorry, you can only choose between [1] or [2] ...as a default {name} is going to be a daily habit")
@@ -76,9 +77,11 @@ while True:
                 print(habit.name)
 
         case "6":
-            if input("Which periodicity do you want to see? \n [1] daily \n [2] weekly") == "1":
+            print("Which periodicity do you want to see? \n [1] daily \n [2] weekly")
+            x=input()
+            if x == "1":
                 periodicity = "daily"
-            elif input("Which periodicity do you want to see? \n [1] daily \n [2] weekly") == "2":
+            elif x == "2":
                 periodicity = "weekly"
             else:
                 print("Sorry we do not have this periodicity in our database")
