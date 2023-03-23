@@ -15,6 +15,15 @@ To do so:<br>
 ##### Be aware that this project was built for educational purposes. In order to fill the db with the testdata, the db will be dropped at the beginning of each session! <br> 
 ##### The testdata is dated with the 5th march! Due to the fact that the habit tracker processes real time data, and the testdata is "outdated", when "checking off" a task for a habit from the testdata, the misscounter will always increase by the missed dates between today and the last entry,  and the current counter will drop to 1!
 
+### How to run tests?
+To run the tests, you open the project in your IDE. 
+In your Project File System, you should see the "Documentation" folder, the "venv" folder and a bunch of classes. 
+Under the habitTracker.py file, you see the habitTracker_*test*.py file. When you open the file you can either run each test case by clicking the start button next to the function.
+Or you can run all at once by clicking the start button next to the definition of the class!
+
+### Predefined Testdata 
+The required pre-defined testdata of 4 weeks for 5 habit is hardcoded in the database.py file in the insert_test_data() method, which will be executed in the main.py file. 
+
 ### Description
 This description section will hold some basic information on how to use the app:<br>
 
