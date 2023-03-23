@@ -13,6 +13,13 @@ class HabitTrackerTest(unittest.TestCase):
         tracker = habitTracker.Tracker()
         self.assertEqual(tracker.get_current_habits(), tracker.habit_list)
 
+    def test_get_habit_by_name(self):
+        database.init_db()
+        tracker = habitTracker.Tracker()
+        tracker.create_habit("dishes", "daily", "daily_habit_one")
+        habit_ = tracker.get_habit_by_name("dishes")
+        self.assertEqual(habit_.name, "dishes")
+
     def test_create_habit(self):
         database.init_db()
         tracker = habitTracker.Tracker()
@@ -44,6 +51,38 @@ class HabitTrackerTest(unittest.TestCase):
         list_ = tracker.get_same_periodicity("weekly")
 
         self.assertEqual(list_[0].periodicity, "weekly")
+
+    def test_get_longest_streak_all(self):
+        database.init_db()
+        tracker = habitTracker.Tracker()
+        tracker.create_habit("focus", "daily", "daily_habit_one")
+        tracker.create_habit("manage", "weekly", "daily_habit_one")
+        tracker.check_off_habit_task("focus")
+        self.assertIn("focus", tracker.get_longest_streak_all().keys())
+        self.assertIn(str(tracker.get_habit_by_name("focus").longest_streak), tracker.get_longest_streak_all().values())
+
+    def test_get_longest_streak_habit(self):
+        database.init_db()
+        tracker = habitTracker.Tracker()
+        tracker.create_habit("think", "daily", "daily_habit_one")
+        tracker.check_off_habit_task("think")
+        tracker.create_habit("habit_a", "daily", "daily_habit_one")
+        self.assertEqual(tracker.get_habit_by_name("think").longest_streak, 1)
+        self.assertEqual(tracker.get_habit_by_name("habit_a").longest_streak, 0)
+
+    def test_get_missed_periods_all(self):
+        database.init_db()
+        tracker = habitTracker.Tracker()
+        tracker.create_habit("habit_b", "daily", "daily_habit_one")
+        tracker.create_habit("habit_c", "weekly", "daily_habit_one")
+        self.assertIn("habit_b", tracker.get_missed_periods_all().keys())
+        self.assertIn(str(tracker.get_habit_by_name("habit_b").missed_periods_counter), tracker.get_longest_streak_all().values())
+
+    def test_get_missed_periods_habit(self):
+        database.init_db()
+        tracker = habitTracker.Tracker()
+        tracker.create_habit("habit_d", "daily", "daily_habit_one")
+        self.assertEqual(tracker.get_habit_by_name("habit_d").missed_periods_counter, 0)
 
     def test_get_current_open(self):
         database.init_db()
